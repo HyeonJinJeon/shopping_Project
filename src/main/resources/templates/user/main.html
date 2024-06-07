@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Page</title>
+</head>
+<body>
+<h1>Welcome to the Main Page</h1>
+
+<div>
+  <h2>Product List</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- 서버로부터 받아온 product 리스트를 반복하여 표시 -->
+    <tr th:each="product : ${products}">
+      <td th:text="${product.id}">ID</td>
+      <td th:text="${product.name}">Name</td>
+      <td th:text="${product.description}">Description</td>
+      <td th:text="${product.price}">Price</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 로그인 상태에 따라 다른 내비게이션을 보여줍니다. -->
+<div>
+<!--  &lt;!&ndash; 만약 로그인 된 상태라면 &ndash;&gt;-->
+<!--  <c:if test="${loggedIn}">-->
+<!--    <p>You are logged in.</p>-->
+<!--    <form action="/logout" method="post">-->
+<!--      <button type="submit">Logout</button>-->
+<!--    </form>-->
+<!--  </c:if>-->
+<!--  &lt;!&ndash; 로그인 되지 않은 상태라면 &ndash;&gt;-->
+<!--  <c:if test="${not loggedIn}">-->
+<!--    <p>Please log in to access more features.</p>-->
+<!--    <a href="/login">Login</a>-->
+<!--  </c:if>-->
+</div>
+</body>
+</html>
