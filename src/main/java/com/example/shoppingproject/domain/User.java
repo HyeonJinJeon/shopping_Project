@@ -31,4 +31,18 @@ public class User {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(String username, String password, String email, String address, String phone) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.address = address;
+        this.phone = phone;
+    }
 }
