@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Page</title>
+  <link rel="stylesheet" href="/css/list.css">
+</head>
+<body>
+<header>
+  <h1>World Peas</h1>
+  <nav>
+    <a href="#">Shop</a>
+    <a href="#">Newstand</a>
+    <a href="#">Who we are</a>
+    <a href="#">My profile</a>
+    <button>Basket (3)</button>
+  </nav>
+</header>
+<main>
+  <section class="product-list">
+    <h2>items</h2>
+    <div class="product-item" th:each="product : ${products}">
+      <img th:src="@{/images/placeholder.png}" th:alt="${product.name}">
+      <div>
+        <h3 th:text="${product.name}">Product Name</h3>
+        <p th:text="'$' + ${product.price} + ' / unit'">Product Price</p>
+        <div class="quantity">
+          <input type="text" value="1 unit">
+          <button>Edit</button>
+        </div>
+      </div>
+      <p class="price" th:text="'$' + ${product.price}">Product Total Price</p>
+    </div>
+  </section>
+  <aside class="order-summary">
+    <h2>Cart</h2>
+    <div th:if="${cart != null}">
+      <p th:text = "'이름: ' + ${user.username}"></p>
+      <div th:each="item : ${cartItems}">
+        <p th:text="'Product: ' + ${item.product.name} + ', Price: $' + ${item.product.price} + ', Quantity: ' + ${item.quantity}"></p>
+      </div>
+      <p th:text="'Subtotal: $' + ${cart.getTotalPrice()}"></p>
+      <button>Continue to payment</button>
+    </div>
+    <div th:unless="${cart != null}">
+      <p>Your cart is empty.</p>
+    </div>
+  </aside>
+</main>
+</body>
+</html>
