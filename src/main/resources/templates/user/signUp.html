@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
+    <link rel="stylesheet" href="/css/signUp.css">
 </head>
 <body>
 <h1>회원가입</h1>
-<form action="/createUser" method="post" th:object="${user}">
-    <label for="username">이름:</label>
+<form action="/signUp" method="post" th:object="${user}">
+    <label for="username">닉네임:</label>
     <input type="text" id="username" name="username" th:field="*{username}" required><br>
+
+    <label for="name">이름:</label>
+    <input type="text" id="name" name="name" th:field="*{name}"><br>
 
     <label for="email">이메일:</label>
     <input type="email" id="email" name="email" th:field="*{email}" required><br>
 
     <label for="password">비밀번호:</label>
     <input type="password" id="password" name="password" th:field="*{password}" required><br>
+
+    <label for="address">주소:</label>
+    <input type="text" id="address" name="address" th:field="*{address}"><br>
+
+    <label for="phone">전화번호:</label>
+    <input type="text" id="phone" name="phoneNumber" th:field="*{phone}"><br>
 
     <button type="submit">가입하기</button>
 </form>
