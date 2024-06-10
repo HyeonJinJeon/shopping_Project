@@ -20,4 +20,14 @@ public class ProductService {
         products = productRepository.findAll();
         return products;
     }
+
+    public List<Product> getProductsByCategoryId(Long CategoryId) {
+        List<Product> products = new ArrayList<>();
+        productRepository.findAll().forEach(product -> {
+            if (product.getCategory().getId().equals(CategoryId)) {
+                products.add(product);
+            }
+        });
+        return products;
+    }
 }
