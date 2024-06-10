@@ -4,6 +4,8 @@ import com.example.shoppingproject.domain.Product;
 import com.example.shoppingproject.domain.User;
 import com.example.shoppingproject.service.ProductService;
 import com.example.shoppingproject.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,19 +38,21 @@ public class UserController {
         return "user/signIn";
     }
     @PostMapping("/signIn")
-    public String signIn(@ModelAttribute User user, Model model) {
+    public String signIn(@ModelAttribute User user, HttpSession session, HttpServletRequest request) {
         boolean isUser = userService.authenticateByEmail(user.getEmail(), user.getPassword());
         if(isUser){
-            return "redirect:/main";
+            User loginUser = userService.findUserByEmail(user.getEmail());
+            session = request.getSession();
+            session.setAttribute("user", loginUser);
+            if(session.getAttribute("user") == null){
+                return "redirect:/signIn";
+            }else{
+                return "redirect:/main";
+            }
         }else{
             return "redirect:/signIn";
         }
     }
 
-    @GetMapping("/main")
-    public String main(Model model){
-        List<Product> products = productService.getAllProducts(); // productService는 ProductService에 의존성 주입되어야 함
-        model.addAttribute("products", products);
-        return "user/main";
-    }
+
 }
