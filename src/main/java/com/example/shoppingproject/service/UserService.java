@@ -25,6 +25,10 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
     private boolean isValidEmail(String email) {
         // 이메일 유효성 검사
         return email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
