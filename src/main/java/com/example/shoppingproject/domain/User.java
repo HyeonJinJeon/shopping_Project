@@ -26,11 +26,15 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
+    private String name;
     private String address;
     private String phone;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    @OneToOne(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Cart cart;
 
     public User(String username, String email, String password) {
         this.username = username;
