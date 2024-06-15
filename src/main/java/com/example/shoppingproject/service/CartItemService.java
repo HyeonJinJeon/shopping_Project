@@ -20,4 +20,16 @@ public class CartItemService {
     public List<CartItem> getAllCartItems() {
         return cartItemRepository.findAll();
     }
+
+    public CartItem getCartItemByProductId(Long id) {
+        return cartItemRepository.findByProductId(id);
+    }
+
+    public CartItem findCartItemByCartIdAndProductId(Long cartId, Long productId) {
+        return cartItemRepository.findByCartIdAndProductId(cartId, productId);
+    }
+
+    public void saveCartItem(CartItem cartItem) {
+        cartItemRepository.save(cartItem);
+    }
 }

@@ -20,4 +20,7 @@ public class CartService {
         return cart;
     }
 
+    public void save(Cart cart) {
+        cartRepository.save(cart);
+    }
 }

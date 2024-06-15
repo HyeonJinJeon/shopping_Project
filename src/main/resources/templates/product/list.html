@@ -9,13 +9,13 @@
 </head>
 <body>
 <header>
-  <h1>World Peas</h1>
+  <h1>PX 마트</h1>
   <nav>
     <a href="#">Shop</a>
-    <a href="#">Newstand</a>
-    <a href="#">Who we are</a>
+<!--    <a href="#">Newstand</a>-->
+<!--    <a href="#">Who we are</a>-->
     <a href="#">My profile</a>
-    <button>Basket (3)</button>
+    <button>Log out</button>
   </nav>
 </header>
 <main>
@@ -25,11 +25,29 @@
       <img th:src="@{/images/placeholder.png}" th:alt="${product.name}">
       <div>
         <h3 th:text="${product.name}">Product Name</h3>
-        <p th:text="'$' + ${product.price} + ' / unit'">Product Price</p>
-        <div class="quantity">
-          <input type="text" value="1 unit">
-          <button>Edit</button>
-        </div>
+        <p th:text="'₩' + ${product.price}">Product Price</p>
+        <p th:text="'재고 : ' + ${product.stock}">Product Price</p>
+        <form action="/addCart" method="post">
+          <label for="quantity">수량</label>
+          <select class="quantity" id="quantity" name="quantity" >
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=7>7</option>
+            <option value=8>8</option>
+            <option value=9>9</option>
+            <option value=10>10</option>
+          </select>
+          <input type="hidden" name="product" th:value="${product.id}" />
+          <button type="submit">장바구니 담기</button>
+        </form>
+<!--        <div class="quantity">-->
+<!--          <input type="text" value="1">-->
+<!--          <button>Edit</button>-->
+<!--        </div>-->
       </div>
       <p class="price" th:text="'$' + ${product.price}">Product Total Price</p>
     </div>

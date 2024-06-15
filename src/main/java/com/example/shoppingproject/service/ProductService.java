@@ -13,6 +13,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
+    public Product getProductById(Long Id){
+        return productRepository.findById(Id).get();
+    }
 
     public List<Product> getAllProducts() {
         // 예시로 더미 데이터를 생성하여 반환합니다.
